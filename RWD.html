@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {font-size:20px;margin:0px}
+img {height: 100%; width: 100%; }
+.main{}
+.n_container{display:flex}
+.welcome{display:flex;background-color:#B0E0E6;height:300px;padding:0px;font-size:40px;align-items:center;justify-content:center}
+.nav{padding:2px;flex:auto}
+.pic_container{margin:0px auto;width:1200px;margin-top:100px;display:flex;flex-wrap:wrap}
+.pic_inner{flex:none;width:280px;margin:10px}
+.pic{display:flex}
+.div_desc{background-color:#B0E0E6;margin:0px;text-align:center}
+#box1{flex:auto}
+#box2{flex:auto}
+#ham{flex:none;visibility: hidden}
+#box3{display:flex;flex:none;width:250px}
+@media (max-width:1200px){
+.pic_container{width:90%}
+.pic_inner{width:45%;margin:0px auto}
+}
+@media (max-width:600px) {
+.pic_container{width:90%}
+.pic_inner{width:90%;margin:0px auto}
+#box3{display:none;}
+#ham{flex:none;visibility: visible}
+#burger{display:none}
+}
+
+
+</style>
+</head>
+<body>
+<div class="main">
+<div class="n_container">
+<div class="box" id="box1">My Webside</div>
+<div class="box" id="box2"></div>
+<div id="ham">
+<label for="burger">☰</label>
+<input type="checkbox" id="burger">
+</div>
+<div class="box" id="box3">
+<div class="nav">Item 1</div>
+<div class="nav">Item 2</div>
+<div class="nav">Item 3</div>
+<div class="nav">Item 4</div>
+</div>
+</div>
+<div class="welcome">Welcome to MyHome</div>
+<div class="pic_container">
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog1</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog2</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog3</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog4</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog5</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog6</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog7</div>
+</div>
+<div class="pic_inner">
+<div class="pic"><img src="dog.jpg" ></div><div class="div_desc">dog8</div>
+</div>
+</div>
+</div>
+</body>
+</html>
