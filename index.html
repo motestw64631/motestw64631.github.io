@@ -14,10 +14,24 @@ img {height: 100%; width: 100%; }
 .pic_inner{flex:none;width:280px;margin:10px}
 .pic{display:flex}
 .div_desc{background-color:#B0E0E6;margin:0px;text-align:center}
-#box1{flex:auto}
+.lb{visibility:hidden}
+.menu li a {
+  margin:0px;
+  padding: 0px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 3px solid #ffffff;
+}
+#burger{display:none}
+.menu{position:absolute;top:0;right:0;visibility:hidden;list-style-type:none}
+#burger:checked ~ .menu{visibility:visible}
+#box1{flex:none;width:125px}
 #box2{flex:auto}
 #ham{flex:none;visibility: hidden}
-#box3{display:flex;flex:none;width:250px}
+#box3{display:flex;flex:none;width:300px}
 @media (max-width:1200px){
 .pic_container{width:90%}
 .pic_inner{width:45%;margin:0px auto}
@@ -25,9 +39,9 @@ img {height: 100%; width: 100%; }
 @media (max-width:600px) {
 .pic_container{width:90%}
 .pic_inner{width:90%;margin:0px auto}
-#box3{display:none;}
-#ham{flex:none;visibility: visible}
-#burger{display:none}
+.nav{display:none}
+.lb{visibility:visible;position:absolute;right:5px;top:-3px}
+#box3{width:30px}
 }
 
 
@@ -38,15 +52,19 @@ img {height: 100%; width: 100%; }
 <div class="n_container">
 <div class="box" id="box1">My Webside</div>
 <div class="box" id="box2"></div>
-<div id="ham">
-<label for="burger">☰</label>
-<input type="checkbox" id="burger">
-</div>
 <div class="box" id="box3">
-<div class="nav">Item 1</div>
-<div class="nav">Item 2</div>
-<div class="nav">Item 3</div>
-<div class="nav">Item 4</div>
+<label for="burger" class='lb'>☰</label>
+<input type="checkbox" id="burger">
+<ul class="menu">
+<li><a href="">Item 1</a></li>
+<li><a href="">Item 2</a></li>
+<li><a href="">Item 3</a></li>
+<li><a href="">Item 4</a></li>
+</ul>
+<div class="nav"><a href="">Item 1</a></div>
+<div class="nav"><a href="">Item 2</a></div>
+<div class="nav"><a href="">Item 3</a></div>
+<div class="nav"><a href="">Item 4</a></div>
 </div>
 </div>
 <div class="welcome">Welcome to MyHome</div>
