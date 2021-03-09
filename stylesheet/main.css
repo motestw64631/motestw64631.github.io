@@ -6,7 +6,7 @@ img {height: 100%; width: 100%; }
 .nav{padding:2px;flex:auto}
 .pic_container{margin:0px auto;width:1200px;margin-top:50px;display:flex;flex-wrap:wrap;justify-content: center;}
 .pic_inner{flex:none;margin-bottom: 0px;display:flex;flex-direction: column;margin:10px;}
-.textImage{height:30px;background-color: #aae2e2;width:100%;font-size: 15px;display:flex;justify-content:center;align-items:center;}
+.textImage{height:30px;background-color: #B0E0E6;width:100%;font-size: 15px;display:flex;justify-content:center;align-items:center;}
 .pic{display:flex}
 .div_desc{background-color:#B0E0E6;margin:0px;text-align:center}
 .lb{visibility:hidden}
