@@ -25,15 +25,18 @@
                 imagePath = datas[i]['imagePath'];
                 imgContext = document.createElement('img');
                 picInner = document.createElement('div');
-                textInner = document.createElement('div')
+                textInner = document.createElement('div');
+                testDiv = document.createElement('div');
+                testDiv.className = 'test'
                 picInner.className = 'pic_inner';
                 imgContext.src = imagePath;
                 imgContext.className = 'resortImage';
                 textInner.className = 'textImage';
                 textInner.textContent = title;
-                picInner.appendChild(imgContext);
+                testDiv.appendChild(imgContext);
+                picInner.appendChild(testDiv);
                 picInner.appendChild(textInner);
-                currentDiv.appendChild(picInner)
+                currentDiv.appendChild(picInner);
             }
         }
 
@@ -58,7 +61,7 @@
             req.open("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json");
             req.onload = function () {
                 var resortList = JSON.parse(this.responseText);
-                console.log()
+                //console.log()
                 var resortDatas = parseData(resortList, count);
                 addElement(resortDatas);
             }
