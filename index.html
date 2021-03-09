@@ -1,68 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="theme.css">
-<script>
-function changeTomeme(){
-  var img=document.getElementById("dog");
-  var s=img.src;
-  if (s.includes('meme')){
-    img.src='dog.jpg';
-  }else{
-    img.src='dog_meme.jpg';
-  }
-}
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="theme.css">
+    <script>
+        function findFirstpath(paths) {
+            var path = paths.split('http')[1];
+            path = 'http' + path;
+            return path
+        }
+
+        function addElement(datas) {
+            var currentDiv = document.getElementById('pic_ctn');
+            var picInner;
+            var title;
+            var imagePath;
+            //console.log(datas)
+            for (i = 0; i < datas.length; i++) {
+                //console.log(datas[i]);
+                title = datas[i]['title'];
+                imagePath = datas[i]['imagePath'];
+                imgContext = document.createElement('img');
+                picInner = document.createElement('div');
+                textInner = document.createElement('div')
+                picInner.className = 'pic_inner';
+                imgContext.src = imagePath;
+                imgContext.className = 'resortImage';
+                textInner.className = 'textImage';
+                textInner.textContent = title;
+                picInner.appendChild(imgContext);
+                picInner.appendChild(textInner);
+                currentDiv.appendChild(picInner)
+            }
+        }
+
+        function parseData(datas, n) {
+            var resortList = []
+            for (var i = (8 * n) - 8; i <= (8 * n) - 1; i++) {
+                var data = datas['result']['results'][i];
+                var title = data['stitle'];
+                var longitude = data['longitude'];
+                var latitude = data['latitude'];
+                var imagePaths = data['file'];
+                var imagePath = findFirstpath(imagePaths);
+                resortList.push({ "title": title, "longitude": longitude, "latitude": latitude, "imagePath": imagePath });
+            }
+            return resortList
+        }
+        function getData() {
+            var countElement = document.getElementById('count');
+            var count = countElement.textContent;
+            var req = new XMLHttpRequest();
+            req.overrideMimeType("application/json");
+            req.open("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json");
+            req.onload = function () {
+                var resortList = JSON.parse(this.responseText);
+                console.log()
+                var resortDatas = parseData(resortList, count);
+                addElement(resortDatas);
+            }
+            req.send();
+            countElement.textContent = Number(count) + 1
+        }
+
+    </script>
 </head>
-<body>
-<div class="main">
-<div class="n_container">
-<div class="box" id="box1">My Webside</div>
-<div class="box" id="box2"></div>
-<div class="box" id="box3">
-<label for="burger" class='lb'>☰</label>
-<input type="checkbox" id="burger">
-<ul class="menu">
-<li><a href="">Item 1</a></li>
-<li><a href="">Item 2</a></li>
-<li><a href="">Item 3</a></li>
-<li><a href="">Item 4</a></li>
-</ul>
-<div class="nav"><a href="">Item 1</a></div>
-<div class="nav"><a href="">Item 2</a></div>
-<div class="nav"><a href="">Item 3</a></div>
-<div class="nav"><a href="">Item 4</a></div>
-</div>
-</div>
-<div class="welcome">Welcome to MyHome</div>
-<div class="pic_container">
-<div class="pic_inner">
-<div class="pic"><img src="dog.jpg" id="dog" onclick='changeTomeme()'></div><div class="div_desc">dog</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="cat.jpg" ></div><div class="div_desc">cat</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="cat2.jpg" ></div><div class="div_desc">cat2</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="cat3.jpg" ></div><div class="div_desc">cat3</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="dog2.jpg" ></div><div class="div_desc">dog2</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="dog3.jpg" ></div><div class="div_desc">dog3</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="dog4.jpg" ></div><div class="div_desc">dog4</div>
-</div>
-<div class="pic_inner">
-<div class="pic"><img src="cat4.jpg" ></div><div class="div_desc">cat4</div>
-</div>
-</div>
-</div>
+
+<body onload='getData();'>
+    <div class="main">
+        <div class="n_container">
+            <div class="box" id="box1">My Webside</div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3">
+                <label for="burger" class='lb'>☰</label>
+                <input type="checkbox" id="burger">
+                <ul class="menu">
+                    <li><a href="">Item 1</a></li>
+                    <li><a href="">Item 2</a></li>
+                    <li><a href="">Item 3</a></li>
+                    <li><a href="">Item 4</a></li>
+                </ul>
+                <div class="nav"><a href="">Item 1</a></div>
+                <div class="nav"><a href="">Item 2</a></div>
+                <div class="nav"><a href="">Item 3</a></div>
+                <div class="nav"><a href="">Item 4</a></div>
+            </div>
+        </div>
+        <div class="welcome" id='banner'>Welcome to MyHome</div>
+        <div class="pic_container" id='pic_ctn'>
+        </div>
+        <div style='display: flex;justify-content: center;'><button id="btn" onclick="getData();">Load More</button></div>
+        <div id='count' style="display:none">1</div>
+    </div>
 </body>
+
 </html>
